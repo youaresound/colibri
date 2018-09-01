@@ -1,0 +1,411 @@
+#N canvas 3 95 1281 919 10;
+#X declare -stdlib zexy;
+#X declare -stdlib iemlib1;
+#X text 753 896 <--------- record mix;
+#N canvas 370 299 745 572 externals 0;
+#X obj 39 137 declare -stdlib zexy;
+#X text 332 142 this version;
+#X obj 39 155 declare -stdlib iemlib1;
+#X text 254 155 <----------- uses zexy iemlib1 externals;
+#X restore 56 257 pd externals;
+#N canvas 0 50 833 645 loading_tracks 0;
+#X obj 82 520 outlet;
+#X msg 82 142 2018-8-15-2-7-58+2_track1.wav 2018-8-15-2-7-58+1_track2.wav
+2018-8-15-2-7-58+1_track3.wav 2018-8-15-2-7-58+1_track4.wav;
+#X text 469 145 if tracks are in the same folder as the abstraction
+;
+#X text 497 186 or;
+#X obj 291 382 pack s s s s;
+#X obj 305 299 openpanel;
+#X obj 305 281 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 260 351 bang;
+#X obj 367 299 openpanel;
+#X obj 367 281 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 428 298 openpanel;
+#X obj 428 280 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 490 298 openpanel;
+#X obj 490 280 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 569 307 ??????????????;
+#X obj 92 64 r record-filename;
+#X obj 69 96 symbol;
+#X obj 62 46 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 88 43 <----- bang to load into first track.;
+#X obj 8 11 inlet;
+#X msg 147 213 /path/to/2018-8-15-2-7-58+2_track1.wav /path/to/2018-8-15-2-7-58+1_track3.wav
+;
+#X text 213 65 <-------- from recordsf~;
+#X connect 1 0 0 0;
+#X connect 4 0 0 0;
+#X connect 5 0 4 0;
+#X connect 6 0 5 0;
+#X connect 7 0 4 0;
+#X connect 8 0 4 1;
+#X connect 8 0 7 0;
+#X connect 9 0 8 0;
+#X connect 10 0 4 2;
+#X connect 10 0 7 0;
+#X connect 11 0 10 0;
+#X connect 12 0 7 0;
+#X connect 12 0 4 3;
+#X connect 13 0 12 0;
+#X connect 15 0 16 1;
+#X connect 16 0 0 0;
+#X connect 17 0 16 0;
+#X connect 19 0 16 0;
+#X connect 20 0 0 0;
+#X restore 675 375 pd loading_tracks;
+#N canvas 107 135 1115 612 messages 0;
+#X obj 119 562 outlet;
+#X obj 393 234 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 393 253 rec1 \$1;
+#X obj 446 270 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 446 289 rec2 \$1;
+#X obj 506 304 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 559 344 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 506 323 rec3 \$1;
+#X msg 559 363 rec4 \$1;
+#X msg 151 16 gui;
+#X msg 338 214 ready\$1;
+#X obj 699 438 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 699 460 play1 \$1;
+#X msg 773 482 play2 \$1;
+#X obj 775 463 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 842 484 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 906 508 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 174 63 loop \$1;
+#X obj 175 45 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 624 420 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 624 442 play \$1;
+#X msg 841 504 play3 \$1;
+#X msg 903 527 play4 \$1;
+#X obj 235 142 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 260 95 <------ bang to restart all tracks at the same time.
+;
+#X msg 217 96 sbang;
+#X msg 234 161 sync \$1;
+#X obj 338 176 hradio 15 1 0 4 empty empty empty 0 -8 0 10 -109120
+-261633 -1 2;
+#X obj 338 195 + 1;
+#X text 414 174 <--- monitor incoming signal on track number.;
+#X text 202 43 <------- toggle looping on off.;
+#X obj 480 28 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 479 47 metro 1220;
+#N canvas 0 50 450 300 midi 0;
+#X msg 127 116 \; pd midi-properties;
+#N canvas 68 186 1081 651 midi-help 0;
+#X floatatom 838 294 0 0 0 0 - - -;
+#X floatatom 812 427 0 0 0 0 - - -;
+#X floatatom 743 426 0 0 0 0 - - -;
+#X obj 541 339 noteout;
+#X obj 743 453 pgmout;
+#X obj 812 453 bendout;
+#X floatatom 958 291 0 0 0 0 - - -;
+#X text 183 13 MIDI I/O objects;
+#X obj 135 408 pgmin;
+#X floatatom 167 435 0 0 0 0 - - -;
+#X floatatom 135 435 0 0 0 0 - - -;
+#X floatatom 71 436 0 0 0 0 - - -;
+#X floatatom 32 436 0 0 0 0 - - -;
+#X floatatom 262 435 0 0 0 0 - - -;
+#X floatatom 216 435 0 0 0 0 - - -;
+#X floatatom 352 456 0 0 0 0 - - -;
+#X floatatom 315 477 0 0 0 0 - - -;
+#X floatatom 389 433 0 0 0 0 - - -;
+#X text 129 368 program change, f 7;
+#X text 33 368 pitch bend, f 5;
+#X floatatom 680 276 0 0 0 0 - - -;
+#X floatatom 699 305 0 0 0 0 - - -;
+#X floatatom 719 333 0 0 0 0 - - -;
+#X obj 680 360 ctlout;
+#X obj 958 318 ctlout 7 4;
+#X floatatom 659 427 0 0 0 0 - - -;
+#X floatatom 538 426 0 0 0 0 - - -;
+#X obj 659 453 touchout;
+#X obj 538 452 polytouchout;
+#X floatatom 578 424 0 0 0 0 - - -;
+#X obj 569 70 midiin;
+#X floatatom 569 101 0 0 0 0 - - -;
+#X floatatom 608 101 0 0 0 0 - - -;
+#X floatatom 897 108 0 0 0 0 - - -;
+#X floatatom 943 109 0 0 0 0 - - -;
+#X obj 897 77 sysexin;
+#X obj 956 479 midiout;
+#X floatatom 732 103 0 0 0 0 - - -;
+#X floatatom 827 103 0 0 0 0 - - -;
+#X obj 732 74 midirealtimein;
+#X text 739 132 all real-time messages, f 13;
+#X text 31 495 updated for Pd release 0.48-1;
+#X obj 32 408 bendin;
+#X obj 216 408 touchin;
+#X obj 315 406 polytouchin;
+#X floatatom 51 209 0 0 0 0 - - -;
+#X obj 32 158 notein;
+#X floatatom 32 232 0 0 0 0 - - -;
+#X floatatom 71 184 0 0 0 0 - - -;
+#X text 66 232 note;
+#X text 81 210 velocity;
+#X text 101 186 channel;
+#X floatatom 300 217 0 0 0 0 - - -;
+#X floatatom 284 246 0 0 0 0 - - -;
+#X floatatom 316 184 0 0 0 0 - - -;
+#X obj 284 159 ctlin;
+#X text 315 249 value;
+#X text 331 210 controller number, f 10;
+#X text 349 185 channel;
+#X text 422 434 channel;
+#X text 384 456 note number;
+#X text 209 368 channel aftertouch, f 10;
+#X text 316 363 polyphonic aftertouch, f 10;
+#X text 346 479 aftertouch value;
+#X floatatom 268 319 0 0 0 0 - - -;
+#X text 299 322 value;
+#X obj 268 289 ctlin 7 4;
+#X text 93 157 (omni);
+#X floatatom 237 211 0 0 0 0 - - -;
+#X floatatom 184 212 0 0 0 0 - - -;
+#X obj 184 183 notein 1;
+#X text 174 158 (channel 1);
+#X text 333 158 (all controllers \, omni);
+#X floatatom 71 313 0 0 0 0 - - -;
+#X text 19 314 value;
+#X obj 71 287 ctlin 4;
+#X floatatom 117 313 0 0 0 0 - - -;
+#X text 540 203 Outputs are set to channel 1 by default \, but they
+also take a channel argument \, and ctlout takes control and channel
+arguments. Inlets are not supressed by arguments and change the parameters.
+, f 65;
+#X text 889 132 system exclusive messages only, f 18;
+#X floatatom 518 311 5 0 0 0 - - -, f 5;
+#X floatatom 564 311 5 0 0 0 - - -, f 5;
+#X floatatom 613 311 5 0 0 0 - - -, f 5;
+#X text 517 286 note;
+#X text 566 285 vel;
+#X text 623 287 ch;
+#X text 525 400 touch;
+#X text 580 400 note;
+#X text 137 285 (controller 4);
+#X text 148 315 channel, f 10;
+#X text 355 290 (controller 7 \, channel 4), f 14;
+#X text 713 277 value;
+#X text 730 306 controller;
+#X text 752 334 channel;
+#X obj 838 321 ctlout 7;
+#X text 830 347 (controller 7 \, channel 1), f 14;
+#X text 954 346 (controller 7 \, channel 4), f 14;
+#X text 888 414 Raw MIDI (doesn't take arguments \, 2nd inlet sets
+port number):, f 22;
+#X text 42 44 Inputs are omni by default \, an optional argument sets
+the channel and removes the rightmost outlet (which ouputs the channel
+number). For [ctlin] \, a first optional argument sets controller number
+and supresses its corresponding outlet \, and a second argument sets
+the channel and also supresses its corresponding outlet.;
+#X text 542 18 These three below are always omni \, don't take arguments
+and output the port number instead of the channel:;
+#X text 535 129 raw MIDI except sysex and real-time messages (byte
+by byte), f 22;
+#X connect 0 0 93 0;
+#X connect 1 0 5 0;
+#X connect 2 0 4 0;
+#X connect 6 0 24 0;
+#X connect 8 0 10 0;
+#X connect 8 1 9 0;
+#X connect 20 0 23 0;
+#X connect 21 0 23 1;
+#X connect 22 0 23 2;
+#X connect 25 0 27 0;
+#X connect 26 0 28 0;
+#X connect 29 0 28 1;
+#X connect 30 0 31 0;
+#X connect 30 1 32 0;
+#X connect 35 0 33 0;
+#X connect 35 1 34 0;
+#X connect 39 0 37 0;
+#X connect 39 1 38 0;
+#X connect 42 0 12 0;
+#X connect 42 1 11 0;
+#X connect 43 0 14 0;
+#X connect 43 1 13 0;
+#X connect 44 0 16 0;
+#X connect 44 1 15 0;
+#X connect 44 2 17 0;
+#X connect 46 0 47 0;
+#X connect 46 1 45 0;
+#X connect 46 2 48 0;
+#X connect 55 0 53 0;
+#X connect 55 1 52 0;
+#X connect 55 2 54 0;
+#X connect 66 0 64 0;
+#X connect 70 0 69 0;
+#X connect 70 1 68 0;
+#X connect 75 0 73 0;
+#X connect 75 1 76 0;
+#X connect 79 0 3 0;
+#X connect 80 0 3 1;
+#X connect 81 0 3 2;
+#X restore 128 151 pd midi-help;
+#X obj 126 64 inlet;
+#X obj 197 61 inlet;
+#X msg 200 84 vis 1;
+#X obj 260 102 s pd-midi-help;
+#X connect 2 0 0 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X restore 650 284 pd midi;
+#X obj 650 243 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 681 262 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 673 240 <------- select midi I/O;
+#X text 704 260 <--- midi help;
+#X text 252 141 <---- toggle loops all tracks to length of track 1
+;
+#X connect 1 0 2 0;
+#X connect 2 0 0 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X connect 5 0 7 0;
+#X connect 6 0 8 0;
+#X connect 7 0 0 0;
+#X connect 8 0 0 0;
+#X connect 9 0 0 0;
+#X connect 10 0 0 0;
+#X connect 11 0 12 0;
+#X connect 12 0 0 0;
+#X connect 13 0 0 0;
+#X connect 14 0 13 0;
+#X connect 15 0 21 0;
+#X connect 16 0 22 0;
+#X connect 17 0 0 0;
+#X connect 18 0 17 0;
+#X connect 19 0 20 0;
+#X connect 20 0 0 0;
+#X connect 21 0 0 0;
+#X connect 22 0 0 0;
+#X connect 23 0 26 0;
+#X connect 25 0 0 0;
+#X connect 26 0 0 0;
+#X connect 27 0 28 0;
+#X connect 28 0 10 0;
+#X connect 31 0 32 0;
+#X connect 32 0 25 0;
+#X connect 34 0 33 0;
+#X connect 35 0 33 1;
+#X restore 650 292 pd messages;
+#X obj 675 358 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 591 191 cnv 15 300 20 empty empty <----_first_set_your_audio_input
+10 12 0 14 -208444 -99206 0;
+#X obj 283 453 cnv 15 250 20 empty empty then_click_on_4track_------->
+10 12 0 14 -253485 -256092 0;
+#N canvas 0 50 450 300 street-cred 0;
+#X text 63 61 modified bb_uname.pd from: http://bitsynthesis.com/pd/
+;
+#X text 101 96 eq by derek at umatic.nl;
+#X text 72 132 design ideas from katja v. / hardoff and others.;
+#X text 59 45 filenaming;
+#X restore 12 33 pd street-cred;
+#X text 730 292 <--- click to send messages connect midi etc.;
+#X obj -289 701 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj -286 727 t a;
+#X msg -201 724 reverse \$1;
+#X obj -200 699 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X msg -101 723 pr \$1;
+#X msg -46 741 ch \$1;
+#X obj 534 191 input~ flt 0 sym symbol slider 0 flt2 0 flt3 1 symbol
+0 symbol 0 symbol 0 symbol 0;
+#X text 628 455 <<<<<<<<------------- record 4 tracks.;
+#X obj 535 453 4track-s~;
+#X obj 534 173 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 746 879 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 548 818 *~ 1;
+#X obj 592 818 *~ 1;
+#X obj 627 789 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 802 932 play;
+#X msg 805 955 stop;
+#X obj 540 654 mixer~ \$0;
+#X obj 537 897 recordsf~;
+#X obj 168 171 s pd;
+#X msg 168 152 dsp \$1;
+#X obj 168 132 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 168 75 loadbang;
+#X msg 168 113 1;
+#X text 553 171 <---- input on.;
+#X text 760 469 recording a new track will write a new stereo .wav
+file to the same folder as the abstraction;
+#X obj 168 94 delay 1000;
+#X text 187 130 <---- dsp on.;
+#X obj 536 1013 s record-filename, f 14;
+#X text 515 56 4track Mixer / Recorder / Looper;
+#X text 855 143 if audio is glitching add delay in audio settings or
+delete eq section.;
+#X text 696 357 <---- bang to load recordsf~ recording into track 1
+;
+#X text 125 332 zexy/date;
+#X text 130 346 zexy/time;
+#X text 147 358 zexy/list2symbol;
+#X text 58 273 uses:;
+#X text 92 299 iemlib1 ? / soundfile_info;
+#X connect 2 0 17 3;
+#X connect 3 0 17 2;
+#X connect 4 0 2 0;
+#X connect 9 0 10 0;
+#X connect 11 0 10 0;
+#X connect 12 0 11 0;
+#X connect 13 0 10 0;
+#X connect 14 0 10 0;
+#X connect 15 0 17 0;
+#X connect 15 1 17 1;
+#X connect 17 0 25 0;
+#X connect 17 1 25 1;
+#X connect 17 2 25 2;
+#X connect 17 3 25 3;
+#X connect 17 4 25 4;
+#X connect 17 5 25 5;
+#X connect 17 6 25 6;
+#X connect 17 7 25 7;
+#X connect 18 0 15 0;
+#X connect 19 0 26 2;
+#X connect 20 0 26 0;
+#X connect 21 0 26 1;
+#X connect 22 0 21 1;
+#X connect 22 0 20 1;
+#X connect 23 0 26 2;
+#X connect 24 0 26 2;
+#X connect 25 0 20 0;
+#X connect 25 1 21 0;
+#X connect 25 2 20 0;
+#X connect 25 3 21 0;
+#X connect 25 4 20 0;
+#X connect 25 5 21 0;
+#X connect 25 6 20 0;
+#X connect 25 7 21 0;
+#X connect 26 0 36 0;
+#X connect 28 0 27 0;
+#X connect 29 0 28 0;
+#X connect 30 0 34 0;
+#X connect 31 0 29 0;
+#X connect 34 0 31 0;
+#X coords 0 919 1 918 65 20 0;
