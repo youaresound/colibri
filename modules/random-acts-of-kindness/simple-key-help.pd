@@ -1,0 +1,45 @@
+#N canvas 324 257 906 419 10;
+#X msg 105 73 symbol b;
+#X obj 200 122 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 228 67 2;
+#X msg 220 42 1;
+#X msg 92 50 symbol a;
+#X obj 104 122 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 70 28 symbol Space;
+#X text 327 95 first creation argument must be a letter/symbol or a
+number.;
+#X text 330 109 you can then change the value with a message of the
+same kind.;
+#X obj 177 73 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 272 72 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 104 96 simple-key a 1;
+#X text 365 223 0 = key switch;
+#X text 365 149 the second argument defines the output as key press
+or on off switch.;
+#X text 365 209 1 = key press;
+#X text 364 190 you can use a toggle to the right inlet to change that.
+;
+#X obj 331 17 keyname;
+#X symbolatom 367 40 10 0 0 0 - - -, f 10;
+#X text 387 18 these abstractions use [keyname];
+#X obj 200 96 simple-key 1 0;
+#X obj 104 139 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 200 139 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X connect 0 0 11 0;
+#X connect 1 0 21 0;
+#X connect 2 0 19 0;
+#X connect 3 0 19 0;
+#X connect 4 0 11 0;
+#X connect 5 0 20 0;
+#X connect 6 0 11 0;
+#X connect 9 0 11 1;
+#X connect 10 0 19 1;
+#X connect 11 0 5 0;
+#X connect 16 1 17 0;
+#X connect 19 0 1 0;
