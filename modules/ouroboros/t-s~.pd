@@ -13,7 +13,7 @@
 #X text 676 247 <-- make a ramp to avoid clicks or zipper noise;
 #X msg 609 213 0;
 #X obj 609 190 moses 0.011;
-#X obj -42 262 line~;
+#X obj 32 320 line~;
 #X obj -42 241 pack 0 50;
 #X text 25 240 <-- make a ramp to avoid clicks or zipper noise;
 #X msg -42 206 0;
@@ -24,14 +24,14 @@
 #X connect 1 0 17 0;
 #X connect 2 0 6 0;
 #X connect 3 0 1 0;
-#X connect 4 0 2 1;
+#X connect 4 0 2 0;
 #X connect 5 0 0 0;
 #X connect 8 0 0 1;
 #X connect 9 0 8 0;
 #X connect 11 0 9 0;
 #X connect 12 0 11 0;
 #X connect 12 1 9 0;
-#X connect 13 0 2 0;
+#X connect 13 0 2 1;
 #X connect 14 0 13 0;
 #X connect 16 0 14 0;
 #X connect 17 0 16 0;
@@ -115,7 +115,7 @@
 #X obj -124 -64 inlet~;
 #X obj 684 775 outlet~;
 #X obj 105 171 hsl 50 25 0 1 0 0 empty empty empty 20 10 0 14 -63524
--97072 -204800 3550 1;
+-97072 -204800 2450 1;
 #X obj 35 116 tgl 25 0 empty empty empty 17 7 0 10 -100331 -261761
 -1 0 1;
 #X obj 17 50 s solo;
