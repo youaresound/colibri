@@ -1,0 +1,22 @@
+#N canvas 0 22 531 459 10;
+#X symbolatom 170 320 10 0 0 0 - - -;
+#X symbolatom 223 273 10 0 0 0 - - -;
+#X msg 175 144 symbol yeah;
+#X obj 180 214 if-else yeah;
+#X msg 108 125 symbol ok;
+#X obj 170 338 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 223 291 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 245 242 5 0 0 0 - - -;
+#X msg 255 168 symbol if_something_else;
+#X msg 275 188 symbol yeah;
+#X connect 0 0 5 0;
+#X connect 1 0 6 0;
+#X connect 2 0 3 0;
+#X connect 3 0 0 0;
+#X connect 3 1 1 0;
+#X connect 3 2 7 0;
+#X connect 4 0 3 0;
+#X connect 8 0 3 1;
+#X connect 9 0 3 1;

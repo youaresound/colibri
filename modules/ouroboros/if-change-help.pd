@@ -1,0 +1,14 @@
+#N canvas 558 362 530 322 10;
+#X symbolatom 166 184 25 0 0 0 - - -;
+#X msg 166 88 symbol this_is_a_message;
+#X obj 166 205 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 354 273 [change] for symbols;
+#X msg 177 113 symbol this_is_a_mess_age;
+#X text 160 232 only sends thru if the symbol has changed.;
+#X text 360 295 uses [zexy/symbol2list];
+#X obj 166 140 if-change;
+#X connect 0 0 2 0;
+#X connect 1 0 7 0;
+#X connect 4 0 7 0;
+#X connect 7 0 0 0;

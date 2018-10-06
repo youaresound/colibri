@@ -110,7 +110,7 @@
 #X obj 319 586 r \$1-new_tape!;
 #X msg 321 611 0;
 #X obj 463 706 spigot;
-#N canvas 2 153 1274 803 load-audio 1;
+#N canvas 2 153 1274 803 load-audio 0;
 #X msg 524 369 read \$1;
 #X floatatom 549 502 15 0 0 0 - - -, f 15;
 #X obj 536 416 unpack f s f f f f s f;
@@ -157,6 +157,13 @@
 #X obj 649 974 *~;
 #X obj 472 816 *~;
 #X obj 608 1097 outlet~;
+#X symbolatom 1339 284 10 0 0 0 - - -, f 10;
+#X floatatom 1378 374 5 0 0 0 - - -, f 5;
+#X msg 1348 245 bang;
+#X obj 1351 314 sel symbol;
+#X msg 1357 342 0;
+#X msg 1398 344 1;
+#X obj 1372 403 spigot;
 #X connect 0 0 120 0;
 #X connect 0 0 10 0;
 #X connect 1 0 2 0;
@@ -267,6 +274,7 @@
 #X connect 83 0 38 0;
 #X connect 83 0 14 1;
 #X connect 83 0 110 0;
+#X connect 83 0 129 0;
 #X connect 84 0 5 0;
 #X connect 85 0 71 0;
 #X connect 86 0 18 0;
@@ -301,7 +309,7 @@
 #X connect 110 0 54 0;
 #X connect 110 1 53 0;
 #X connect 110 2 53 1;
-#X connect 110 3 109 0;
+#X connect 110 3 135 0;
 #X connect 110 4 104 0;
 #X connect 111 0 104 0;
 #X connect 113 0 116 0;
@@ -323,3 +331,12 @@
 #X connect 125 0 123 0;
 #X connect 126 0 128 0;
 #X connect 127 0 126 0;
+#X connect 129 0 132 0;
+#X connect 130 0 108 1;
+#X connect 130 0 135 1;
+#X connect 131 0 129 0;
+#X connect 132 0 133 0;
+#X connect 132 1 134 0;
+#X connect 133 0 130 0;
+#X connect 134 0 130 0;
+#X connect 135 0 109 0;
